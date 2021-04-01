@@ -1,0 +1,13 @@
+1. ps1 cannot be loaded because the execution of scripts is disabled on this system
+https://superuser.com/a/1121785
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -Force;
+
+
+2. RxJs error - node_modules/rxjs/internal/types.d.ts(81,44): error TS1005: ';' expected error after installation of Angular 
+Go to package.json and modify "rxjs": "^6.0.0" to "rxjs": "6.0.0"
+Run npm install in your project. 
+
+
+3. Issue after running npm audit - errors: Data path “. builders['app-shell']” should have required property 'class' 
+In your package.json change the devkit builder,
+change "@angular-devkit/build-angular": "^0.800.1", to @angular-devkit/build-angular": "0.13.4" 
