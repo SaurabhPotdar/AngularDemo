@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.cg.employee.service.EmployeeService;
 import lombok.extern.log4j.Log4j2;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/employees")
 @Log4j2
 public class EmployeeController {
@@ -30,27 +32,30 @@ public class EmployeeController {
 	@PostMapping(value = "")
 	public ResponseEntity<?> addEmployee(@RequestBody Employee employee) {
 		try {
+			log.info(employee);
 			employee.setName(employee.getName().toUpperCase());
 			employee.setDepartment(employee.getDepartment().toUpperCase());
-			return new ResponseEntity<>(employeeService.addEmployee(employee), HttpStatus.CREATED);
+			return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> findById(@PathVariable int id) {
-		log.info("Inside findById");
+		log.info("Id: " + id);
 		Employee employee = employeeService.findById(id);
 		if (employee != null)
 			return new ResponseEntity<Employee>(employee, HttpStatus.OK);
 		return new ResponseEntity<String>("No employee found", HttpStatus.BAD_REQUEST);
 	}
 
-	// To find by using multiple parameters, we just create one controller method
+	// Finding by using multiple parameters,using just one controller method
 	@GetMapping(value = "find")
 	public ResponseEntity<?> findByDepartmentOrName(@RequestParam(required = false) String department,
 			@RequestParam(required = false) String name) {
+		log.info("Department: " + department);
+		log.info("Name: " + name);
 		if(department==null && name==null) {
 			return new ResponseEntity<String>("No query param provided", HttpStatus.BAD_REQUEST);
 		}
@@ -80,11 +85,12 @@ public class EmployeeController {
 	@PutMapping(value = "")
 	public ResponseEntity<?> updateEmployee(@RequestBody Employee employee) {
 		try {
+			log.info(employee);
 			employee.setName(employee.getName().toUpperCase());
 			employee.setDepartment(employee.getDepartment().toUpperCase());
-			return new ResponseEntity<>(employeeService.addEmployee(employee), HttpStatus.OK);
+			return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 
