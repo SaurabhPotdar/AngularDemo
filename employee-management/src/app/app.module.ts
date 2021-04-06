@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShowComponent } from './show/show.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Error404Component } from './_component/error404/error404.component';
+import { ShowComponent } from './_component/show/show.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShowComponent
+    ShowComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,

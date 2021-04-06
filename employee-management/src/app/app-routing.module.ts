@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ShowComponent } from './show/show.component';
+import { Error404Component } from './_component/error404/error404.component';
+import { ShowComponent } from './_component/show/show.component';
+
 
 const routes: Routes = [
-  {path: 'show', component: ShowComponent}
+  { path: '', redirectTo: 'show', pathMatch: 'full' },
+  { path: 'show', component: ShowComponent },
+  { path: '**', component: Error404Component }
 ];
 
 @NgModule({
