@@ -12,4 +12,8 @@ export class EmployeeService {
     return this.myhttp.get('http://localhost:9088/employees');
   }
 
+  addProduct(data: any) {
+    return this.myhttp.post('http://localhost:9088/employees', data);
+  }
+
 }

@@ -1,0 +1,13 @@
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+  }
+
+  .centerText {
+    margin: auto;
+    width: 50%;
+    border: 3px;
+    padding: 10px;
+  }

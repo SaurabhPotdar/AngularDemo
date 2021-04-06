@@ -12,4 +12,6 @@ export class TempComponent implements OnInit {
   ngOnInit() {
   }
 
+  user:any={};
+
 }
