@@ -9,7 +9,7 @@ import com.cg.employee.dto.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-	public Employee findByName(@Param("name") String name);
+	public Employee findByNameIgnoreCase(@Param("name") String name);
 
 	public List<Employee> findByDepartment(@Param("department") String department);
 

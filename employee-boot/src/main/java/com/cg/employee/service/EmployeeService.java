@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import com.cg.employee.dto.Employee;
 import com.cg.employee.repository.EmployeeRepository;
 
-import lombok.extern.log4j.Log4j2;
-
-@Log4j2
 @Service
 public class EmployeeService {
 
@@ -18,7 +15,6 @@ public class EmployeeService {
 	private EmployeeRepository employeeRepository;
 
 	public Employee addEmployee(Employee employee) {
-		log.info(employee);
 		return employeeRepository.save(employee);
 	}
 
@@ -31,7 +27,7 @@ public class EmployeeService {
 	}
 
 	public Employee findByName(String name) {
-		return employeeRepository.findByName(name);
+		return employeeRepository.findByNameIgnoreCase(name);
 	}
 
 	public Employee updateEmployee(Employee employee) {

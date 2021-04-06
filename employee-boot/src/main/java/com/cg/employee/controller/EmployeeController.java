@@ -33,8 +33,6 @@ public class EmployeeController {
 	public ResponseEntity<?> addEmployee(@RequestBody Employee employee) {
 		try {
 			log.info(employee);
-			employee.setName(employee.getName().toUpperCase());
-			employee.setDepartment(employee.getDepartment().toUpperCase());
 			return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -60,13 +58,11 @@ public class EmployeeController {
 			return new ResponseEntity<String>("No query param provided", HttpStatus.BAD_REQUEST);
 		}
 		if (department != null) {
-			department = department.toUpperCase();
 			List<Employee> employee = employeeService.findByDepartment(department);
 			if (employee != null)
 				return new ResponseEntity<List<Employee>>(employee, HttpStatus.OK);
 		}
 		if (name != null) {
-			name = name.toUpperCase();
 			Employee employee = employeeService.findByName(name);
 			if (employee != null)
 				return new ResponseEntity<Employee>(employee, HttpStatus.OK);
@@ -86,8 +82,6 @@ public class EmployeeController {
 	public ResponseEntity<?> updateEmployee(@RequestBody Employee employee) {
 		try {
 			log.info(employee);
-			employee.setName(employee.getName().toUpperCase());
-			employee.setDepartment(employee.getDepartment().toUpperCase());
 			return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
