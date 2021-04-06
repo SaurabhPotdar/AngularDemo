@@ -38,4 +38,8 @@ public class EmployeeService {
 		return employeeRepository.findByDepartment(department);
 	}
 
+	public void deleteEmployee(int id) {
+		employeeRepository.deleteById(id);
+	}
+
 }

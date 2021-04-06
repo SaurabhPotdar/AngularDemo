@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,7 +55,7 @@ public class EmployeeController {
 			@RequestParam(required = false) String name) {
 		log.info("Department: " + department);
 		log.info("Name: " + name);
-		if(department==null && name==null) {
+		if (department == null && name == null) {
 			return new ResponseEntity<String>("No query param provided", HttpStatus.BAD_REQUEST);
 		}
 		if (department != null) {
@@ -85,6 +86,16 @@ public class EmployeeController {
 			return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<String> deleteEmployee(@PathVariable int id) {
+		try {
+			log.info(id);
+			return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 
