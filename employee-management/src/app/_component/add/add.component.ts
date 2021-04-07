@@ -16,8 +16,8 @@ export class AddComponent implements OnInit {
   ngOnInit() {
   }
 
-  addProduct(){
-    this.service.addProduct(this.model).subscribe((data)=>{alert("Added successfully"); this.router.navigate(['/show']);}, (error)=>{alert(error.error)});
+  addEmployee(){
+    this.service.addEmployee(this.model).subscribe((data)=>{alert("Added successfully"); this.router.navigate(['/show']);}, (error)=>{alert(error.error)});
   }
 
 }

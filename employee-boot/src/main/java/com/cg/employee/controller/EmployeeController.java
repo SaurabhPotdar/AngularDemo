@@ -36,6 +36,7 @@ public class EmployeeController {
 			log.info(employee);
 			return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.CREATED);
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -47,6 +48,14 @@ public class EmployeeController {
 		if (employee != null)
 			return new ResponseEntity<Employee>(employee, HttpStatus.OK);
 		return new ResponseEntity<String>("No employee found", HttpStatus.BAD_REQUEST);
+	}
+	
+	@GetMapping(value = "")
+	public ResponseEntity<?> getAllEmployees() {
+		List<Employee> employees = employeeService.getAllEmployees();
+		if (employees.size() != 0)
+			return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+		return new ResponseEntity<String>("No employees found", HttpStatus.BAD_REQUEST);
 	}
 
 	// Finding by using multiple parameters,using just one controller method
@@ -71,20 +80,13 @@ public class EmployeeController {
 		return new ResponseEntity<String>("No employee found", HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value = "")
-	public ResponseEntity<?> getAllEmployees() {
-		List<Employee> employees = employeeService.getAllEmployees();
-		if (employees.size() != 0)
-			return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
-		return new ResponseEntity<String>("No employees found", HttpStatus.BAD_REQUEST);
-	}
-
 	@PutMapping(value = "")
 	public ResponseEntity<?> updateEmployee(@RequestBody Employee employee) {
 		try {
 			log.info(employee);
 			return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.OK);
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -93,9 +95,11 @@ public class EmployeeController {
 	public ResponseEntity<String> deleteEmployee(@PathVariable int id) {
 		try {
 			log.info(id);
-			return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
+			employeeService.deleteEmployee(id);
+			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			log.error(e.getMessage());
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 

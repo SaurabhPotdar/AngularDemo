@@ -10,6 +10,7 @@ import { Error404Component } from './_component/error404/error404.component';
 import { ShowComponent } from './_component/show/show.component';
 import { TempComponent } from './_component/temp/temp.component';
 import { AddComponent } from './_component/add/add.component';
+import { UpdateComponent } from './_component/update/update.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AddComponent } from './_component/add/add.component';
     ShowComponent,
     Error404Component,
     TempComponent,
-    AddComponent
+    AddComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,

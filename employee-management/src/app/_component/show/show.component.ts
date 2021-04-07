@@ -21,4 +21,15 @@ export class ShowComponent implements OnInit {
     });
   }
 
+  updateEmployee(id: number) {
+    this.router.navigate(['update', id]);
+  }
+
+  deleteEmployee(id: number) {
+    this.service.deleteEmployee(id).subscribe(() => {
+      alert("Deleted successfully");
+      window.location.reload();
+    });
+  }
+
 }
