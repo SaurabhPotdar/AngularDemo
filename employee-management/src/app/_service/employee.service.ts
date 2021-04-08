@@ -9,24 +9,28 @@ export class EmployeeService {
 
   constructor(private myhttp: HttpClient) { }
 
+  localhost:string = "localhost";
+  port:string = "9088";
+  baseUrl:string = 'http://' + this.localhost + ':' + this.port;
+
   getAllData(){
-    return this.myhttp.get('http://localhost:9088/employees');
+    return this.myhttp.get(this.baseUrl + '/employees');
   }
 
   addEmployee(data: any) {
-    return this.myhttp.post('http://localhost:9088/employees', data);
+    return this.myhttp.post(this.baseUrl + '/employees', data);
   }
 
   updateEmployee(employee: Employee) {
-    return this.myhttp.put('http://localhost:9088/employees', employee);
+    return this.myhttp.put(this.baseUrl + '/employees', employee);
   }
 
   deleteEmployee(id: any) {
-    return this.myhttp.delete('http://localhost:9088/employees/' + id,id);
+    return this.myhttp.delete(this.baseUrl + '/employees/' + id,id);
   }
 
   searchEmployee(updateId: any) {
-    return this.myhttp.get('http://localhost:9088/employees/' + updateId);
+    return this.myhttp.get(this.baseUrl + '/employees/' + updateId);
   }
 
 }
