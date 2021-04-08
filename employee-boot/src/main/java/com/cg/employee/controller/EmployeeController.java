@@ -47,7 +47,7 @@ public class EmployeeController {
 		Employee employee = employeeService.findById(id);
 		if (employee != null)
 			return new ResponseEntity<Employee>(employee, HttpStatus.OK);
-		return new ResponseEntity<String>("No employee found", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>("No employee found", HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping(value = "")
@@ -55,7 +55,7 @@ public class EmployeeController {
 		List<Employee> employees = employeeService.getAllEmployees();
 		if (employees.size() != 0)
 			return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
-		return new ResponseEntity<String>("No employees found", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>("No employees found", HttpStatus.NOT_FOUND);
 	}
 
 	// Finding by using multiple parameters,using just one controller method
@@ -77,7 +77,7 @@ public class EmployeeController {
 			if (employee != null)
 				return new ResponseEntity<Employee>(employee, HttpStatus.OK);
 		}
-		return new ResponseEntity<String>("No employee found", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>("No employee found", HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping(value = "")

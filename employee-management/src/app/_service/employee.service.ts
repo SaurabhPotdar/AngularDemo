@@ -26,7 +26,7 @@ export class EmployeeService {
   }
 
   deleteEmployee(id: any) {
-    return this.myhttp.delete(this.baseUrl + '/employees/' + id,id);
+    return this.myhttp.delete(this.baseUrl + '/employees/' + id);
   }
 
   searchEmployee(updateId: any) {
