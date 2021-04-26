@@ -62,8 +62,7 @@ public class EmployeeController {
 	@GetMapping(value = "find")
 	public ResponseEntity<?> findByDepartmentOrName(@RequestParam(required = false) String department,
 			@RequestParam(required = false) String name) {
-		log.info("Department: " + department);
-		log.info("Name: " + name);
+		log.info("Department: " + department + ", Name: " + name);
 		if (department == null && name == null) {
 			return new ResponseEntity<String>("No query param provided", HttpStatus.BAD_REQUEST);
 		}
